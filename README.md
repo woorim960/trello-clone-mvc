@@ -9,6 +9,7 @@
 * [요구사항분석](https://github.com/woorim960/trello-clone-mvc/wiki/%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD%EB%B6%84%EC%84%9D)
 * [DB 설계](https://github.com/woorim960/trello-clone-mvc/wiki/DB-%EC%84%A4%EA%B3%84)
 * [API 설계](https://github.com/woorim960/trello-clone-mvc/wiki/API-%EB%AA%85%EC%84%B8)
+* [커밋 전략](https://github.com/woorim960/trello-clone-mvc/wiki/%EC%BB%A4%EB%B0%8B-%EC%A0%84%EB%9E%B5)
 
 **README**
 * <a href="#-tech-stack">Tech Stack</a>
