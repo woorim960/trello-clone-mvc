@@ -1,0 +1,24 @@
+@import "./default.css";
+@import "./variable.css";
+
+body {
+  background-image: url("https://cdn.pixabay.com/photo/2016/10/15/15/19/digital-1742687_1280.jpg");
+}
+
+div.list-box {
+  display: flex;
+  align-items: center;
+  width: var(--list-wd);
+  height: var(--list-hg);
+  margin: var(--big-sz);
+  padding-left: var(--small-sz);
+
+  color: var(--list-right-cg);
+  background-color: var(--list-gray-cg);
+  border: 1px solid var(--list-right-cg);
+}
+
+div.list-box:hover {
+  cursor: pointer;
+  background-color: var(--list-gray-hover-cg);
+}
