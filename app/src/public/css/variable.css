@@ -1,0 +1,18 @@
+:root {
+  /* SIZE */
+  --big-sz: 18px;
+  --mid-sz: 12px;
+  --small-sz: 6px;
+  --smallest-sz: 3px;
+
+  /* LIST_INPUT_SIZE */
+  --list-wd: 200px;
+  --list-hg: 30px;
+
+  /* COLOR */
+
+  /* LIST_COLOR */
+  --list-right-cg: rgba(236, 236, 236, 0.829);
+  --list-gray-cg: rgba(240, 248, 255, 0.404);
+  --list-gray-hover-cg: rgba(240, 248, 255, 0.493);
+}
