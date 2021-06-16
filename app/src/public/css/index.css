@@ -5,6 +5,7 @@ body {
   background-image: url("https://cdn.pixabay.com/photo/2016/10/15/15/19/digital-1742687_1280.jpg");
 }
 
+/* LIST_BOX */
 div.list-box {
   display: flex;
   align-items: center;
@@ -13,12 +14,62 @@ div.list-box {
   margin: var(--big-sz);
   padding-left: var(--small-sz);
 
-  color: var(--list-right-cg);
-  background-color: var(--list-gray-cg);
-  border: 1px solid var(--list-right-cg);
+  color: var(--list-right-cl);
+  background-color: var(--list-gray-cl);
+  border: 1px solid var(--list-right-cl);
 }
 
 div.list-box:hover {
   cursor: pointer;
-  background-color: var(--list-gray-hover-cg);
+  background-color: var(--list-gray-hover-cl);
+}
+
+div.active-list-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: var(--new-list-wd);
+  margin: var(--big-sz);
+  padding: var(--small-sz);
+
+  color: var(--list-right-cl);
+  background-color: var(--list-right-cl);
+}
+
+/* LIST_INPUT */
+div .list-input {
+  height: var(--new-list-hg);
+}
+
+/* LIST_BUTTON */
+div .btn-form {
+  display: flex;
+  flex-direction: row;
+}
+
+div .btn {
+  margin-top: var(--small-sz);
+  margin-right: var(--mid-sz);
+  height: var(--btn-hg);
+}
+
+div .btn:hover {
+  cursor: pointer;
+}
+
+div .creation-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--cret-btn-wd);
+  padding-top: var(--smallest-sz);
+  background-color: var(--cret-btn-bg-cl);
+}
+
+div .cancel-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: var(--smallest-sz);
+  color: var(--btn-text-cl);
 }
