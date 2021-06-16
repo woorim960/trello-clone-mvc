@@ -1,31 +1,18 @@
 "use strict";
 
-const listBox = document.querySelector("div.list-box");
+import List from "./services/List.js";
+import ListHandler from "./eventHandlers/ListHandler.js";
 
-listBox.addEventListener("click", changeListBox);
-listBox.addEventListener("keypress", keypressHandler);
+const list = new List("div");
+const listHandler = new ListHandler(list);
 
-let isActiveListBox = false;
-function changeListBox(e) {
-  if (!isActiveListBox) {
-    listBox.classList.remove("list-box");
-    listBox.classList.add("active-list-box");
-    listBox.innerHTML = `
-      <input class="list-input" type="text" placeholder="Add a list...">
-      <div class="btn-form">
-        <span class="btn creation-btn">Save</span>
-        <span class="btn cancel-btn">X</span>
-      </div>
-    `;
-  }
-  isActiveListBox = true;
+const body = document.querySelector("body");
+const listBox = list.node;
+body.appendChild(listBox);
 
-  if (e.target.classList[1] === "creation-btn")
-    console.log("리스트 제목을 등록합니다.");
-}
+// 이벤트 발동 시 this의 주체가 동적으로 변경되는 것을 방지
+listHandler.click = listHandler.click.bind(listHandler);
+listHandler.keypress = listHandler.keypress.bind(listHandler);
 
-function keypressHandler(e) {
-  if (e.key === "Enter") {
-    console.log("리스트 제목을 등록합니다.");
-  }
-}
+listBox.addEventListener("click", listHandler.click);
+listBox.addEventListener("keypress", listHandler.keypress);
