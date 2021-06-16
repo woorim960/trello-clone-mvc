@@ -7,6 +7,7 @@
 ### 📍 바로가기
 **Wiki**
 * [요구사항분석](https://github.com/woorim960/trello-clone-mvc/wiki/%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD%EB%B6%84%EC%84%9D)
+* [DB 설계](https://github.com/woorim960/trello-clone-mvc/wiki/DB-%EC%84%A4%EA%B3%84)
 
 **README**
 * <a href="#-tech-stack">Tech Stack</a>
