@@ -20,7 +20,7 @@ const home = {
       return list;
     });
 
-    res.json({ lists: newLists });
+    res.status(200).json({ lists: newLists });
   },
 };
 
