@@ -31,4 +31,13 @@ export default class List {
       </div>
     `;
   }
+
+  changeToSavedNode(title) {
+    this.node.classList.remove("active-list-box");
+    this.node.classList.add("saved-list-box");
+    this.node.innerHTML = `
+      <span class="list-title">${title}</span>
+      <span class="add-card-btn">Add a card...</span>
+    `;
+  }
 }

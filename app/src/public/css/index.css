@@ -5,6 +5,11 @@ body {
   background-image: url("https://cdn.pixabay.com/photo/2016/10/15/15/19/digital-1742687_1280.jpg");
 }
 
+.list-form {
+  display: flex;
+  flex-direction: row;
+}
+
 /* LIST_BOX */
 div.list-box {
   display: flex;
@@ -36,9 +41,29 @@ div.active-list-box {
   background-color: var(--list-right-cl);
 }
 
+div.saved-list-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: var(--new-list-wd);
+  margin: var(--big-sz) 0;
+  margin-left: var(--big-sz);
+  padding: var(--mid-sz);
+
+  color: var(--list-right-cl);
+  background-color: var(--list-gray-cl);
+  border: 1px solid var(--list-right-cl);
+}
+
 /* LIST_INPUT */
 div .list-input {
   height: var(--new-list-hg);
+}
+
+div .list-title {
+  font-weight: 600;
+  font-size: var(--big-sz);
+  margin-bottom: 12px;
 }
 
 /* LIST_BUTTON */
@@ -72,4 +97,14 @@ div .cancel-btn {
   justify-content: center;
   padding-top: var(--smallest-sz);
   color: var(--btn-text-cl);
+}
+
+div .add-card-btn {
+  color: var(--btn-text-cl);
+}
+
+div .add-card-btn:hover {
+  cursor: pointer;
+  font-weight: 500;
+  border-bottom: 1px solid var(--btn-text-cl);
 }
