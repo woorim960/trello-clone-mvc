@@ -9,6 +9,7 @@ dotenv.config();
 
 // 라우트 모듈
 const view = require("./src/routes/views");
+const api = require("./src/routes/apis");
 
 // 미들웨어 등록
 app.set("views", "./src/views");
@@ -19,5 +20,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // 라우트 미들웨어 등록
 app.use("/", view);
+app.use("/api/", api);
 
 module.exports = app;
