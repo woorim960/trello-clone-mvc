@@ -25,11 +25,11 @@ class CardStorage {
     }
   }
 
-  static async update(no, content) {
-    const sql = `UPDATE cards SET content=? WHERE no=?;`;
+  static async delete(no) {
+    const sql = `DELETE FROM cards WHERE no=?;`;
 
     try {
-      const [result] = await db.promise().query(sql, [content, no]);
+      const [result] = await db.promise().query(sql, [no]);
       return Boolean(result.affectedRows);
     } catch (err) {
       throw err;
