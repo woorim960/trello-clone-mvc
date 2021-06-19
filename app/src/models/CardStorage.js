@@ -24,6 +24,17 @@ class CardStorage {
       throw err;
     }
   }
+
+  static async update(no, content) {
+    const sql = `UPDATE cards SET content=? WHERE no=?;`;
+
+    try {
+      const [result] = await db.promise().query(sql, [content, no]);
+      return Boolean(result.affectedRows);
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 
 module.exports = CardStorage;
