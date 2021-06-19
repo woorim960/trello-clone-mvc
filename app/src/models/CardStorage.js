@@ -13,6 +13,17 @@ class CardStorage {
       throw err;
     }
   }
+
+  static async save(listNo, content) {
+    const sql = `INSERT INTO cards (list_no, content) VALUES (?, ?);`;
+
+    try {
+      const [result] = await db.promise().query(sql, [listNo, content]);
+      return Boolean(result.affectedRows);
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 
 module.exports = CardStorage;
