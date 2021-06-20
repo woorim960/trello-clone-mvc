@@ -41,7 +41,7 @@ export default class ListHandler {
           lists.append(newList, "-1");
         }
       }
-    } else {
+    } else if (status === "list-box") {
       const list = lists.getNodes("-1");
       if (!list.getIsActive()) list.changeToActiveNode();
       list.setIsActive(true);

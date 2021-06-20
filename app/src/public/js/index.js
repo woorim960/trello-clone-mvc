@@ -27,3 +27,11 @@ lists.append(list, "-1");
 listForm.appendChild(list.node);
 
 export default lists;
+
+const body = document.querySelector("body");
+body.addEventListener("click", (e) => {
+  if (e.target.className === "list-form" || e.target.tagName === "BODY") {
+    const list = lists.getNodes("-1");
+    list.changeToOriginNode();
+  }
+});
