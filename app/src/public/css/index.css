@@ -1,6 +1,10 @@
 @import "./default.css";
 @import "./variable.css";
 
+.hidden {
+  display: none;
+}
+
 body {
   height: 100vh;
   background-image: url("https://cdn.pixabay.com/photo/2016/10/15/15/19/digital-1742687_1280.jpg");
@@ -36,6 +40,7 @@ div.active-list-box {
   flex-direction: column;
   justify-content: center;
   width: var(--new-list-wd);
+  height:100%;
   margin: var(--big-sz);
   padding: var(--small-sz);
 
@@ -48,6 +53,7 @@ div.saved-list-box {
   flex-direction: column;
   justify-content: center;
   width: var(--new-list-wd);
+  height:100%;
   margin: var(--big-sz) 0;
   margin-left: var(--big-sz);
   padding: var(--mid-sz);
@@ -109,4 +115,14 @@ div .add-card-btn:hover {
   cursor: pointer;
   font-weight: 500;
   border-bottom: 1px solid var(--btn-text-cl);
+}
+
+/* CARD_BUTTON */
+div .add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--cret-btn-wd);
+  padding-top: var(--smallest-sz);
+  background-color: var(--cret-btn-bg-cl);
 }

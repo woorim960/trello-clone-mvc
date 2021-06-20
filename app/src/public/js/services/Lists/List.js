@@ -16,6 +16,7 @@ export default class List {
       this.node.classList.add("saved-list-box");
       this.node.innerHTML = `
       <span class="saved list-title">${attr.title}</span>
+      <div class="card-form"></div>
       <span class="saved add-card-btn">Add a card...</span>
     `;
     } else {
@@ -56,11 +57,14 @@ export default class List {
 
   changeToSavedNode(title, id) {
     this.node.id = id;
+    this.node.classList.remove("active");
     this.node.classList.remove("active-list-box");
+    this.node.classList.add("saved");
     this.node.classList.add("saved-list-box");
     this.node.innerHTML = `
       <span class="list-title">${title}</span>
-      <span class="add-card-btn">Add a card...</span>
+      <div class="card-form"></div>
+      <span class="saved add-card-btn">Add a card...</span>
     `;
   }
 }
