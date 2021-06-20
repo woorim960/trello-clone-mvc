@@ -1,7 +1,6 @@
 "use strict";
 
 import List from "./List.js";
-import Http from "../../utils/Http.js";
 import lists from "../../index.js";
 
 export default class ListController {
