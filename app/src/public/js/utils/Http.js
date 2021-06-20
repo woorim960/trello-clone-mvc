@@ -1,31 +1,23 @@
 "use strict";
 
 export default class Http {
-  static async get(url, accept = "json") {
-    let res = undefined;
-
+  static async get(url) {
     const stream = await fetch(url);
-    if (stream.ok) res = await stream[accept]();
-    return { res, isSuccess: Boolean(stream.ok), status: stream.status };
+    if (stream.ok) var res = await stream.json();
+    return { res, status: stream.status };
   }
 
-  static async post(
-    url,
-    body,
-    contentType = "application/json",
-    accept = "json"
-  ) {
+  static async post(url, body) {
     const opt = {
       method: "POST",
       headers: {
-        "Content-Type": contentType,
+        "Content-Type": "application/json; charset=utf-8",
       },
-      body,
+      body: JSON.stringify(body),
     };
-    console.log(body);
-    let res;
+
     const stream = await fetch(url, opt);
-    if (stream.ok) res = await stream[accept]();
-    return { res, isSuccess: Boolean(stream.ok), status: stream.status };
+    if (stream.ok) var res = await stream.json();
+    return { res, status: stream.status };
   }
 }
