@@ -3,6 +3,7 @@
 import List from "./services/Lists/List.js";
 import Lists from "./services/Lists/Lists.js";
 import ListHandler from "./eventHandlers/ListHandler.js";
+import Card from "./services/Cards/Card.js";
 import Http from "./utils/Http.js";
 
 const listForm = document.querySelector(".list-form");
@@ -14,10 +15,21 @@ const { res } = await Http.get("/api/home");
 
 const lists = new Lists();
 res.lists.forEach((listBox) => {
-  const attr = { id: listBox.no, title: listBox.title, isSaved: true };
-  const list = new List("div", attr);
+  const listAttr = { id: listBox.no, title: listBox.title, isSaved: true };
+  const list = new List("div", listAttr);
 
-  lists.append(list, attr.id);
+  listBox.cards.forEach((cardBox) => {
+    const cardAttr = {
+      id: cardBox.no,
+      content: cardBox.content,
+      isSaved: true,
+    };
+
+    const cardForm = list.node.childNodes[3];
+    cardForm.appendChild(new Card("div", cardAttr).node);
+  });
+
+  lists.append(list, listAttr.id);
   listForm.appendChild(list.node);
 });
 

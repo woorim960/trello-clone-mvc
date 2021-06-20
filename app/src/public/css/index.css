@@ -71,7 +71,7 @@ div .list-input {
 div .list-title {
   font-weight: 600;
   font-size: var(--big-sz);
-  margin-bottom: 12px;
+  margin-bottom: var(--mid-sz);
 }
 
 /* LIST_BUTTON */
@@ -108,6 +108,7 @@ div .cancel-btn {
 }
 
 div .add-card-btn {
+  margin: var(--mid-sz) 0 0 var(--small-sz);
   color: var(--btn-text-cl);
 }
 
@@ -115,6 +116,16 @@ div .add-card-btn:hover {
   cursor: pointer;
   font-weight: 500;
   border-bottom: 1px solid var(--btn-text-cl);
+}
+
+/* CARD_BOX */
+div .saved-card-box {
+  height:100%;
+  margin-bottom: var(--small-sz);
+  padding: var(--mid-sz);
+
+  color: var(--list-right-cl);
+  border: 1px solid var(--list-right-cl);
 }
 
 /* CARD_BUTTON */
