@@ -1,19 +1,29 @@
 "use strict";
 
 import List from "./services/List.js";
+import Lists from "./services/Lists.js";
 import ListHandler from "./eventHandlers/ListHandler.js";
 import Http from "./utils/Http.js";
 
-const list = new List("div");
-const listHandler = new ListHandler(list);
-
 const listForm = document.querySelector(".list-form");
-const listBox = list.node;
-listForm.appendChild(listBox);
 
-// 이벤트 발동 시 this의 주체가 동적으로 변경되는 것을 방지
-listHandler.click = listHandler.click.bind(listHandler);
-listHandler.keypress = listHandler.keypress.bind(listHandler);
+listForm.addEventListener("click", ListHandler.click);
+listForm.addEventListener("keypress", ListHandler.keypress);
 
-listForm.addEventListener("click", listHandler.click);
-listForm.addEventListener("keypress", listHandler.keypress);
+const stream = await fetch("/api/home");
+const listBoxes = await stream.json();
+
+const lists = new Lists();
+listBoxes.lists.forEach((listBox) => {
+  const attr = { id: listBox.no, title: listBox.title, isSaved: true };
+  const list = new List("div", attr);
+
+  lists.append(list, attr.id);
+  listForm.appendChild(list.node);
+});
+
+const list = new List("div");
+lists.append(list, "-1");
+listForm.appendChild(list.node);
+
+export default lists;
