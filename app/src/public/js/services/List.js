@@ -33,6 +33,14 @@ export default class List {
     this.#isActive = value;
   }
 
+  changeToOriginNode() {
+    this.#isActive = false;
+    this.node.classList.remove("active");
+    this.node.classList.remove("active-list-box");
+    this.node.classList.add("list-box");
+    this.node.innerHTML = "Add a list...";
+  }
+
   changeToActiveNode() {
     this.node.classList.remove("list-box");
     this.node.classList.add("active");
