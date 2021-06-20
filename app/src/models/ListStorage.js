@@ -19,7 +19,7 @@ class ListStorage {
 
     try {
       const [result] = await db.promise().query(sql, [title]);
-      return Boolean(result.affectedRows);
+      return result.insertId;
     } catch (err) {
       throw err;
     }
