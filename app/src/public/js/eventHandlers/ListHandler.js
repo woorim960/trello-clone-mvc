@@ -1,9 +1,7 @@
 "use strict";
 
-import List from "../services/Lists/List.js";
 import ListController from "../services/Lists/ListController.js";
 import Http from "../utils/Http.js";
-import lists from "../index.js";
 
 export default class ListHandler {
   static async click(e) {
