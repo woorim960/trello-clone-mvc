@@ -5,7 +5,7 @@ export default class List {
   #isSaved;
   node;
 
-  constructor(node, attr = { id: -1, title: "", isSaved: false }) {
+  constructor(node, attr = { id: "new", title: "", isSaved: false }) {
     this.#isActive = false;
     this.#isSaved = attr.isSaved;
 
@@ -19,7 +19,7 @@ export default class List {
       <span class="saved add-card-btn">Add a card...</span>
     `;
     } else {
-      this.node.id = "-1";
+      this.node.id = "new";
       this.node.classList.add("list-box");
       this.node.innerHTML = "Add a list...";
     }
