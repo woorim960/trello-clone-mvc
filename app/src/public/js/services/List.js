@@ -2,14 +2,27 @@
 
 export default class List {
   #isActive;
+  #isSaved;
   node;
 
-  constructor(node) {
+  constructor(node, attr = { id: -1, title: "", isSaved: false }) {
     this.#isActive = false;
+    this.#isSaved = attr.isSaved;
 
     this.node = document.createElement(node);
-    this.node.classList.add("list-box");
-    this.node.innerHTML = "Add a list...";
+    if (this.#isSaved) {
+      this.node.id = attr.id;
+      this.node.classList.add("saved");
+      this.node.classList.add("saved-list-box");
+      this.node.innerHTML = `
+      <span class="saved list-title">${attr.title}</span>
+      <span class="saved add-card-btn">Add a card...</span>
+    `;
+    } else {
+      this.node.id = "-1";
+      this.node.classList.add("list-box");
+      this.node.innerHTML = "Add a list...";
+    }
   }
 
   getIsActive() {
@@ -22,17 +35,19 @@ export default class List {
 
   changeToActiveNode() {
     this.node.classList.remove("list-box");
+    this.node.classList.add("active");
     this.node.classList.add("active-list-box");
     this.node.innerHTML = `
-      <input class="list-input" type="text" placeholder="Add a list...">
-      <div class="btn-form">
-        <span class="btn creation-btn">Save</span>
-        <span class="btn cancel-btn">X</span>
+      <input class="active list-input" type="text" placeholder="Add a list...">
+      <div class="active btn-form">
+        <span class="active btn creation-btn">Save</span>
+        <span class="active btn cancel-btn">X</span>
       </div>
     `;
   }
 
-  changeToSavedNode(title) {
+  changeToSavedNode(title, id) {
+    this.node.id = id;
     this.node.classList.remove("active-list-box");
     this.node.classList.add("saved-list-box");
     this.node.innerHTML = `
