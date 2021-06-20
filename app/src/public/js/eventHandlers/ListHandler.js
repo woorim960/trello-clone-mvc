@@ -1,7 +1,7 @@
 "use strict";
 
-import lists from "../index.js";
 import ListController from "../services/Lists/ListController.js";
+import Card from "../services/Cards/Card.js";
 import Http from "../utils/Http.js";
 
 export default class ListHandler {
@@ -34,13 +34,7 @@ export default class ListHandler {
         cardAddBtn.classList.add("hidden");
 
         const cardForm = listBox.childNodes[3];
-        cardForm.innerHTML = `
-          <textarea cols="24" rows="4"></textarea>
-          <div class="active btn-form">
-            <span class="active btn add-btn">Add</span>
-            <span class="active btn cancel-btn">X</span>
-          </div>
-        `;
+        cardForm.appendChild(new Card("div").node);
       }
     }
   }
