@@ -10,8 +10,7 @@ const listForm = document.querySelector(".list-form");
 listForm.addEventListener("click", ListHandler.click);
 listForm.addEventListener("keypress", ListHandler.keypress);
 
-const stream = await fetch("/api/home");
-const listBoxes = await stream.json();
+const { res: listBoxes } = await Http.get("/api/home");
 
 const lists = new Lists();
 listBoxes.lists.forEach((listBox) => {
