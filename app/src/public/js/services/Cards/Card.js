@@ -13,7 +13,12 @@ export default class Card {
       this.node.classList.add("saved");
       this.node.classList.add("saved-card-box");
       this.node.innerHTML = `
-        <span class="saved card-content">${attr.content}</span>
+        <div class="content-box">
+          <span class="saved card-content">${attr.content}</span>
+          <div class="icon">
+            <i class="fas fa-pen"></i>
+          </div>
+        </div>
       `;
     } else {
       this.node.innerHTML = `

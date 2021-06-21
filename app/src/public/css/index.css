@@ -128,6 +128,28 @@ div .saved-card-box {
   border: 1px solid var(--list-right-cl);
 }
 
+div .saved-card-box:hover {
+  cursor: pointer;
+}
+
+/* CARD_CONTENT_BOX */
+div .content-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div .content-box .icon {
+  display: none;
+  font-size: var(--mid-sz);
+}
+
+div .saved-card-box:hover .content-box .icon {
+  cursor: pointer;
+  display: block;
+}
+
 /* CARD_BUTTON */
 div .add-btn {
   display: flex;
