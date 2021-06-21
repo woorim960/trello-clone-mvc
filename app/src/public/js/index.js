@@ -1,48 +1,30 @@
 "use strict";
 
-import List from "./services/Lists/List.js";
+import Trello from "./services/Trello.js";
 import Lists from "./services/Lists/Lists.js";
 import ListHandler from "./eventHandlers/ListHandler.js";
-import Card from "./services/Cards/Card.js";
+import ListController from "./services/Lists/ListController.js";
 import Http from "./utils/Http.js";
 
+const body = document.querySelector("body");
 const listForm = document.querySelector(".list-form");
+
+// 바탕화면 클릭시 '리스트 등록 노드'를 'Add a list...' 노드 로 바꾼다.
+body.addEventListener("click", (e) => {
+  const tag = e.target.tagName;
+  if (tag === "ARTICLE" || tag === "BODY") {
+    ListController.changeToOriginNode();
+  }
+});
 
 listForm.addEventListener("click", ListHandler.click);
 listForm.addEventListener("keypress", ListHandler.keypress);
 
+// 트렐로 메인화면 초기화
+const trello = new Trello(new Lists(), listForm);
 const { res } = await Http.get("/api/home");
 
-const lists = new Lists();
-res.lists.forEach((listBox) => {
-  const listAttr = { id: listBox.no, title: listBox.title, isSaved: true };
-  const list = new List("div", listAttr);
+trello.init(res.lists);
+trello.createNewList();
 
-  listBox.cards.forEach((cardBox) => {
-    const cardAttr = {
-      id: cardBox.no,
-      content: cardBox.content,
-      isSaved: true,
-    };
-
-    const cardForm = list.node.childNodes[3];
-    cardForm.appendChild(new Card("div", cardAttr).node);
-  });
-
-  lists.append(list, listAttr.id);
-  listForm.appendChild(list.node);
-});
-
-const list = new List("div");
-lists.append(list, "new");
-listForm.appendChild(list.node);
-
-export default lists;
-
-const body = document.querySelector("body");
-body.addEventListener("click", (e) => {
-  if (e.target.className === "list-form" || e.target.tagName === "BODY") {
-    const list = lists.getNodes("new");
-    list.changeToOriginNode();
-  }
-});
+export default trello.lists;

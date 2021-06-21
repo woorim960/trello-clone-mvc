@@ -67,4 +67,12 @@ export default class List {
       <span class="saved add-card-btn">Add a card...</span>
     `;
   }
+
+  static show(node) {
+    node.classList.remove("hidden");
+  }
+
+  static hide(node) {
+    node.classList.add("hidden");
+  }
 }
