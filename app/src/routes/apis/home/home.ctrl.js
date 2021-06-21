@@ -16,7 +16,7 @@ const home = {
     }, {});
 
     const newLists = lists.map((list) => {
-      list.cards = sortedCards[list.no];
+      list.cards = sortedCards[list.no] ? sortedCards[list.no] : [];
       return list;
     });
 
