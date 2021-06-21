@@ -30,4 +30,18 @@ export default class Card {
       `;
     }
   }
+
+  static changeToSavedNode(node, attr = { id, content }) {
+    node.id = attr.id;
+    node.classList.add("saved");
+    node.classList.add("saved-card-box");
+    node.innerHTML = `
+      <div class="content-box">
+        <span class="saved card-content">${attr.content}</span>
+        <div class="icon">
+          <i class="fas fa-pen"></i>
+        </div>
+      </div>
+    `;
+  }
 }
