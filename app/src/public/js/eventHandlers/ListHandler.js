@@ -84,7 +84,12 @@ export default class ListHandler {
           cardBox.classList.add("saved");
           cardBox.classList.add("saved-card-box");
           cardBox.innerHTML = `
+          <div class="content-box">
             <span class="saved card-content">${content}</span>
+            <div class="icon">
+              <i class="fas fa-pen"></i>
+            </div>
+          </div>
           `;
 
           const cardAddBtn = listBox.childNodes[5];
