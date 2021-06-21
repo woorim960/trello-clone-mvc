@@ -25,6 +25,17 @@ class CardStorage {
     }
   }
 
+  static async update(no, listNo, content) {
+    const sql = `UPDATE cards SET list_no=?, content=? WHERE no=?;`;
+
+    try {
+      const [result] = await db.promise().query(sql, [listNo, content, no]);
+      return Boolean(result.affectedRows);
+    } catch (err) {
+      throw err;
+    }
+  }
+
   static async delete(no) {
     const sql = `DELETE FROM cards WHERE no=?;`;
 

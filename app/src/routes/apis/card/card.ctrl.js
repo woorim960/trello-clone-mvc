@@ -14,8 +14,9 @@ const card = {
 
   update: async (req, res) => {
     const no = req.params.no;
+    const listNo = req.body.listNo;
     const content = req.body.content;
-    const isUpdate = await CardStorage.update(no, content);
+    const isUpdate = await CardStorage.update(no, listNo, content);
 
     if (isUpdate) return res.status(204).end();
     return res.status(404).json({
