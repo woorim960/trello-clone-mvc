@@ -23,4 +23,9 @@ export default class ListController {
     if (!list.getIsActive()) list.changeToActiveNode();
     list.setIsActive(true);
   }
+
+  static changeToOriginNode() {
+    const list = lists.getNodes("new");
+    list.changeToOriginNode();
+  }
 }
