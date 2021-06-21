@@ -10,10 +10,11 @@ export default class Card {
     this.node = document.createElement(node);
     if (this.#isSaved) {
       this.node.id = attr.id;
+      this.node.setAttribute("draggable", "true");
       this.node.classList.add("saved");
       this.node.classList.add("saved-card-box");
       this.node.innerHTML = `
-        <div class="content-box">
+        <div class="saved content-box">
           <span class="saved card-content">${attr.content}</span>
           <div class="icon">
             <i class="fas fa-pen"></i>
@@ -33,10 +34,11 @@ export default class Card {
 
   static changeToSavedNode(node, attr = { id, content }) {
     node.id = attr.id;
+    node.setAttribute("draggable", "true");
     node.classList.add("saved");
     node.classList.add("saved-card-box");
     node.innerHTML = `
-      <div class="content-box">
+      <div class="saved content-box">
         <span class="saved card-content">${attr.content}</span>
         <div class="icon">
           <i class="fas fa-pen"></i>
