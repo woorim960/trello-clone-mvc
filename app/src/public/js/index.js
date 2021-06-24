@@ -4,6 +4,7 @@ import Trello from "./services/Trello.js";
 import Lists from "./services/Lists/Lists.js";
 import ListHandler from "./eventHandlers/ListHandler.js";
 import ListController from "./services/Lists/ListController.js";
+import Dragger from "./services/Drags/Dragger.js";
 import Http from "./utils/Http.js";
 
 const body = document.querySelector("body");
@@ -34,49 +35,21 @@ const dragged = {
   el: null,
 };
 
+const dragger = new Dragger();
 listForm.addEventListener("dragstart", (e) => {
-  const cardBox = e.target;
-  dragged.el = cardBox;
+  dragger.setDraggedNode(e.target);
 });
 
 listForm.addEventListener("dragover", (e) => e.preventDefault());
 listForm.addEventListener("drop", async (e) => {
   const target = e.target;
-  const [listBox, cardBox] = getBoxes(target);
+  const draggedNode = dragger.getDraggedNode();
+  const [listBox] = Dragger.getDropedNodes(target);
 
   const list = trello.lists.getNodes(listBox.id);
-  const { res, status } = await Http.put(`/api/cards/${dragged.el.id}`, {
+  const { res, status } = await Http.put(`/api/cards/${draggedNode.id}`, {
     listNo: listBox.id,
-    content: dragged.el.children[0].children[0].innerText,
+    content: draggedNode.children[0].children[0].innerText,
   });
-  listBox.children[1].appendChild(dragged.el);
+  if (status === 204) listBox.children[1].appendChild(draggedNode);
 });
-
-// Function
-function getBoxes(target) {
-  const className = target.classList[1];
-
-  let listBox;
-  let cardBox;
-  if (className === "saved-list-box") {
-    listBox = target;
-    cardBox = target.children[1];
-  } else if (className === "list-title") {
-    listBox = target.parentNode;
-    cardBox = listBox.children[1];
-  } else if (className === "add-card-btn") {
-    listBox = target.parentNode;
-    cardBox = listBox.children[1];
-  } else if (className === "saved-card-box") {
-    listBox = target.parentNode.parentNode;
-    cardBox = target;
-  } else if (className === "content-box") {
-    listBox = target.parentNode.parentNode.parentNode;
-    cardBox = target.parentNode;
-  } else if (className === "card-content") {
-    listBox = target.parentNode.parentNode.parentNode.parentNode;
-    cardBox = target.parentNode.parentNode;
-  } else throw "위치가 이상해요!";
-
-  return [listBox, cardBox];
-}
