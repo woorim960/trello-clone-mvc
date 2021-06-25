@@ -23,6 +23,17 @@ export default class ButtonHandler {
 
       const cardForm = listBox.childNodes[3];
       cardForm.appendChild(new Card("div").node);
+    } else if (type === "cancel-btn") {
+      const parentNode = e.target.parentNode.parentNode;
+      const parentNodeType = parentNode.classList[0];
+
+      if (parentNodeType === "active-card-box") {
+        const listBox = parentNode.parentNode;
+        listBox.removeChild(parentNode);
+
+        const addCardLineBtn = document.querySelector(".hidden");
+        List.show(addCardLineBtn);
+      } else ListController.changeToOriginNode();
     }
   }
 }
