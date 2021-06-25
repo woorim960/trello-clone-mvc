@@ -17,7 +17,7 @@ export default class List {
       this.node.innerHTML = `
       <span class="saved list-title">${attr.title}</span>
       <div class="card-form"></div>
-      <span class="saved add-card-btn">Add a card...</span>
+      <span class="btn add-card-btn">Add a card...</span>
     `;
     } else {
       this.node.id = "new";
@@ -49,8 +49,8 @@ export default class List {
     this.node.innerHTML = `
       <input class="active list-input" type="text" placeholder="Add a list...">
       <div class="active btn-form">
-        <span class="active btn creation-btn">Save</span>
-        <span class="active btn cancel-btn">X</span>
+        <span class="btn creation-btn">Save</span>
+        <span class="btn cancel-btn">X</span>
       </div>
     `;
   }
@@ -64,7 +64,7 @@ export default class List {
     this.node.innerHTML = `
       <span class="list-title">${title}</span>
       <div class="card-form"></div>
-      <span class="saved add-card-btn">Add a card...</span>
+      <span class="btn add-card-btn">Add a card...</span>
     `;
   }
 
