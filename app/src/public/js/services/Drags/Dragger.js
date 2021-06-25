@@ -22,13 +22,10 @@ export default class Dragger {
     let cardBox;
     if (className === "saved-list-box") {
       listBox = target;
-      cardBox = target.children[1];
     } else if (className === "list-title") {
       listBox = target.parentNode;
-      cardBox = listBox.children[1];
     } else if (className === "add-card-btn") {
       listBox = target.parentNode;
-      cardBox = listBox.children[1];
     } else if (className === "saved-card-box") {
       listBox = target.parentNode.parentNode;
       cardBox = target;
