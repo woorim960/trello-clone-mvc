@@ -33,22 +33,35 @@ listForm.addEventListener("keypress", ListHandler.keypress);
 // Drag & Drop
 const dragger = new Dragger();
 listForm.addEventListener("dragstart", (e) => {
-  dragger.setDraggedNode(e.target);
+  const draggedNode = e.target;
+  draggedNode.classList.add("dragging");
+  dragger.setDraggedNode(draggedNode);
 });
 
-listForm.addEventListener("dragover", (e) => e.preventDefault());
-listForm.addEventListener("drop", async (e) => {
+listForm.addEventListener("dragover", (e) => {
+  e.preventDefault();
+  const draggingNode = document.querySelector(".dragging");
+  const [listBox, cardBox] = Dragger.getDropedNodes(e.target);
+
+  if (cardBox) {
+    cardBox.parentNode.insertBefore(draggingNode, cardBox);
+  } else listBox?.children[1].appendChild(draggingNode);
+});
+
+listForm.addEventListener("dragend", async (e) => {
   const target = e.target;
   const draggedNode = dragger.getDraggedNode();
-  const [listBox, cardBox] = Dragger.getDropedNodes(target);
+  draggedNode.classList.remove("dragging");
 
-  const list = trello.lists.getNodes(listBox.id);
-  const { res, status } = await Http.put(`/api/cards/${draggedNode.id}`, {
+  const [listBox, cardBox] = Dragger.getDropedNodes(target);
+  const { status } = await Http.put(`/api/cards/${draggedNode.id}`, {
     listNo: listBox.id,
     content: draggedNode.children[0].children[0].innerText,
   });
+
   if (status === 204) {
-    if (cardBox) listBox.children[1].insertBefore(draggedNode, cardBox);
-    else listBox.children[1].appendChild(draggedNode);
+    if (cardBox) {
+      cardBox.parentNode.insertBefore(draggedNode, cardBox);
+    } else listBox?.children[1].appendChild(draggedNode);
   }
 });

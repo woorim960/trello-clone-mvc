@@ -169,3 +169,8 @@ div .add-btn {
   padding-top: var(--smallest-sz);
   background-color: var(--cret-btn-bg-cl);
 }
+
+/* Drag & Drop */
+div .saved-card-box.dragging {
+  opacity: .5;
+}

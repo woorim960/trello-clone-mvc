@@ -35,7 +35,7 @@ export default class Dragger {
     } else if (className === "card-content") {
       listBox = target.parentNode.parentNode.parentNode.parentNode;
       cardBox = target.parentNode.parentNode;
-    } else throw "위치가 이상해요!";
+    }
 
     return [listBox, cardBox];
   }
