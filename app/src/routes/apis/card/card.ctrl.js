@@ -6,10 +6,16 @@ const card = {
   create: async (req, res) => {
     const listNo = req.body.listNo;
     const content = req.body.content;
-    const insertId = await CardStorage.save(listNo, content);
+
+    let position = await CardStorage.findRecentPosition();
+    position = position ? position + 1 : 1;
+
+    const insertId = await CardStorage.save(listNo, content, position);
 
     if (insertId)
-      return res.status(201).json({ result: "success", no: insertId });
+      return res
+        .status(201)
+        .json({ result: "success", no: insertId, position });
   },
 
   update: async (req, res) => {

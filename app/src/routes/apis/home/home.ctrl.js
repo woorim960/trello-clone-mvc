@@ -10,8 +10,15 @@ const home = {
 
     const sortedCards = cards.reduce((newCards, card) => {
       if (card.listNo in newCards)
-        newCards[card.listNo].push({ no: card.no, content: card.content });
-      else newCards[card.listNo] = [{ no: card.no, content: card.content }];
+        newCards[card.listNo].push({
+          no: card.no,
+          content: card.content,
+          position: card.position,
+        });
+      else
+        newCards[card.listNo] = [
+          { no: card.no, content: card.content, position: card.position },
+        ];
       return newCards;
     }, {});
 
