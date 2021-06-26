@@ -15,9 +15,54 @@
 * [커밋 전략](https://github.com/woorim960/trello-clone-mvc/wiki/%EC%BB%A4%EB%B0%8B-%EC%A0%84%EB%9E%B5)
 
 **README**
+* <a href="#-run">Run</a>
 * <a href="#-tech-stack">Tech Stack</a>
 * <a href="#-dependencies">Dependencies</a>
 * <a href="#-developer">Developer</a>
+
+<br>
+
+### 🍀 Run
+1. 환경변수 파일 생성
+> 데이터베이스와 연결되어야지만 실행이 가능합니다.
+
+* 명령어
+```
+# 작업 경로로 이동
+$ cd /workdir
+
+# 환경 변수 파일 생성
+$ touch .env
+
+# 환경 변수 내용 추가 -> 내용은 바로 하단에 있습니다.
+$ vi .env
+```
+
+* ```.env```  파일 내용
+   - [DB 설계 바로가기](https://github.com/woorim960/trello-clone-mvc/wiki/DB-%EC%84%A4%EA%B3%84)
+```
+# ? 내용에 사용하는 DB 정보를 적어주십시오.
+NODE_ENV=dev
+
+PORT=7777
+
+DB_HOST=?
+DB_USER=?
+DB_PSWORD=?
+DB_DATABASE=?
+```
+
+2. 도커를 이용한 ```trello-node-mvc``` 이미지 실행
+```
+# /workdir은 본인의 작업 경로입니다.
+$ docker run --env-file /workdir/.env -p 7777:7777 dnfla960/trello-node-mvc
+```
+
+3. 접속
+```
+http://localhost:7777
+```
+
 
 <br>
 
