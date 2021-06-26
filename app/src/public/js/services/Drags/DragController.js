@@ -1,6 +1,7 @@
 "use strict";
 
 import Dragger from "./Dragger.js";
+import Http from "../../utils/Http.js";
 
 export default class DragController {
   static startDrag(dragger, draggingNode) {
@@ -23,5 +24,18 @@ export default class DragController {
 
     const [listBox, cardBox] = Dragger.getDropedNodes(target);
     const requestBody = { listNo: listBox.id };
+
+    if (cardBox?.nextSibling) {
+      const URL = `/api/cards/${draggingNode.id}/${cardBox.nextSibling.id}/position`;
+      const { status } = await Http.patch(URL, requestBody);
+
+      if (status === 204)
+        cardBox.parentNode.insertBefore(draggingNode, cardBox);
+    } else {
+      const URL = `/api/cards/${draggingNode.id}/position`;
+      const { status } = await Http.patch(URL, requestBody);
+
+      if (status === 204) listBox?.children[1].appendChild(draggingNode);
+    }
   }
 }
