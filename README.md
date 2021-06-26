@@ -17,7 +17,6 @@
 **README**
 * <a href="#-tech-stack">Tech Stack</a>
 * <a href="#-dependencies">Dependencies</a>
-* <a href="#-demo">Demo</a>
 * <a href="#-developer">Developer</a>
 
 <br>
@@ -41,11 +40,6 @@
 2. ejs: ^3.1.5
 3. express: ^4.17.1,
 4. mysql2: ^2.2.5
-
-<br>
-
-### 🎬 Demo
-[![Watch the video](https://i9.ytimg.com/vi/85RQ1Sbr_ms/mq1.jpg?sqp=COyQ3oYG&rs=AOn4CLBy70C2zwkBzabmr7g84umeruz22w)](https://youtu.be/85RQ1Sbr_ms)
 
 <br>
 
