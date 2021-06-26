@@ -1,18 +1,18 @@
 "use strict";
 
 export default class Dragger {
-  #draggedNode;
+  #draggingNode;
 
   constructor() {
-    this.#draggedNode = undefined;
+    this.#draggingNode = undefined;
   }
 
-  getDraggedNode() {
-    return this.#draggedNode;
+  getDraggingNode() {
+    return this.#draggingNode;
   }
 
-  setDraggedNode(draggedNode) {
-    this.#draggedNode = draggedNode;
+  setDraggingNode(draggingNode) {
+    this.#draggingNode = draggingNode;
   }
 
   static getDropedNodes(target) {
