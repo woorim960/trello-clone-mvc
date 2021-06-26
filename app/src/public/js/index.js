@@ -5,6 +5,7 @@ import Lists from "./services/Lists/Lists.js";
 import ListHandler from "./eventHandlers/ListHandler.js";
 import ListController from "./services/Lists/ListController.js";
 import Dragger from "./services/Drags/Dragger.js";
+import DragController from "./services/Drags/DragController.js";
 import Http from "./utils/Http.js";
 
 const body = document.querySelector("body");
@@ -33,35 +34,15 @@ listForm.addEventListener("keypress", ListHandler.keypress);
 // Drag & Drop
 const dragger = new Dragger();
 listForm.addEventListener("dragstart", (e) => {
-  const draggedNode = e.target;
-  draggedNode.classList.add("dragging");
-  dragger.setDraggedNode(draggedNode);
+  const draggingNode = e.target;
+  DragController.startDrag(dragger, draggingNode);
 });
 
 listForm.addEventListener("dragover", (e) => {
   e.preventDefault();
-  const draggingNode = document.querySelector(".dragging");
-  const [listBox, cardBox] = Dragger.getDropedNodes(e.target);
-
-  if (cardBox) {
-    cardBox.parentNode.insertBefore(draggingNode, cardBox);
-  } else listBox?.children[1].appendChild(draggingNode);
+  DragController.moveDraggingNode(e.target);
 });
 
 listForm.addEventListener("dragend", async (e) => {
-  const target = e.target;
-  const draggedNode = dragger.getDraggedNode();
-  draggedNode.classList.remove("dragging");
-
-  const [listBox, cardBox] = Dragger.getDropedNodes(target);
-  const { status } = await Http.put(`/api/cards/${draggedNode.id}`, {
-    listNo: listBox.id,
-    content: draggedNode.children[0].children[0].innerText,
-  });
-
-  if (status === 204) {
-    if (cardBox) {
-      cardBox.parentNode.insertBefore(draggedNode, cardBox);
-    } else listBox?.children[1].appendChild(draggedNode);
-  }
+  DragController.insertDraggingNode(dragger, e.target);
 });
