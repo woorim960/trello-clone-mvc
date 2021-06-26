@@ -42,8 +42,6 @@ $ vi .env
    - [DB 설계 바로가기](https://github.com/woorim960/trello-clone-mvc/wiki/DB-%EC%84%A4%EA%B3%84)
 ```
 # ? 내용에 사용하는 DB 정보를 적어주십시오.
-NODE_ENV=dev
-
 PORT=7777
 
 DB_HOST=?
