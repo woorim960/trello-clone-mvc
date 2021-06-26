@@ -1,10 +1,13 @@
 # 트렐로 클론코딩
-> 환영합니다.
+> 환영합니다.  
 **trello-clone-mvc**는 NodeJS를 기반으로 MVC 패턴을 적용하여 개발되었습니다.
 
 <br>
 
 ### 📍 바로가기
+**Service**
+* 박우림의 [Trello](https://idu-market.shop:7777) 이용해보기
+
 **Wiki**
 * [요구사항분석](https://github.com/woorim960/trello-clone-mvc/wiki/%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD%EB%B6%84%EC%84%9D)
 * [DB 설계](https://github.com/woorim960/trello-clone-mvc/wiki/DB-%EC%84%A4%EA%B3%84)
