@@ -34,4 +34,18 @@ export default class Http {
     if (stream.ok) var res = "PUT 요청은 응답 데이터가 없습니다.";
     return { res, status: stream.status };
   }
+
+  static async patch(url, body) {
+    const opt = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify(body),
+    };
+
+    const stream = await fetch(url, opt);
+    if (stream.ok) var res = "PATCH 요청은 응답 데이터가 없습니다.";
+    return { res, status: stream.status };
+  }
 }
