@@ -14,6 +14,17 @@ class CardStorage {
     }
   }
 
+  static async findPositionByNo(no) {
+    const sql = `SELECT position FROM cards WHERE no=?;`;
+
+    try {
+      const [cards] = await db.promise().query(sql, [no]);
+      return cards[0]?.position;
+    } catch (err) {
+      throw err;
+    }
+  }
+
   static async findAll() {
     const sql = `SELECT no, list_no AS listNo, content, position FROM cards ORDER BY position ASC;`;
 
@@ -49,11 +60,33 @@ class CardStorage {
     }
   }
 
+  static async updatePositionOf(no, listNo, position) {
+    const sql = `UPDATE cards SET list_no=?, position=? WHERE no=?;`;
+
+    try {
+      const [result] = await db.promise().query(sql, [listNo, position, no]);
+      return Boolean(result.affectedRows);
+    } catch (err) {
+      throw err;
+    }
+  }
+
   static async addOneToPosition(no, listNo, position) {
     const sql = `UPDATE cards SET list_no=?, position=? WHERE no=?;`;
 
     try {
       const [result] = await db.promise().query(sql, [listNo, position, no]);
+      return Boolean(result.affectedRows);
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static async addOneToAllPositionBiggerThan(listNo, position) {
+    const sql = `UPDATE cards SET position=position+1 WHERE list_no=? AND position >= ?;`;
+
+    try {
+      const [result] = await db.promise().query(sql, [listNo, position]);
       return Boolean(result.affectedRows);
     } catch (err) {
       throw err;
