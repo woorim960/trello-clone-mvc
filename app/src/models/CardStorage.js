@@ -49,6 +49,17 @@ class CardStorage {
     }
   }
 
+  static async addOneToPosition(no, listNo, position) {
+    const sql = `UPDATE cards SET list_no=?, position=? WHERE no=?;`;
+
+    try {
+      const [result] = await db.promise().query(sql, [listNo, position, no]);
+      return Boolean(result.affectedRows);
+    } catch (err) {
+      throw err;
+    }
+  }
+
   static async delete(no) {
     const sql = `DELETE FROM cards WHERE no=?;`;
 
