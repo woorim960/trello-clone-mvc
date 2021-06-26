@@ -47,6 +47,30 @@ const card = {
     });
   },
 
+  updateAllPosition: async (req, res) => {
+    const dragNo = req.params.dragNo;
+    const dropNo = req.params.dropNo;
+    const listNo = req.body.listNo;
+
+    const response = {
+      result: "error",
+      msg: "존재하지 않는 리소스입니다.",
+    };
+
+    const position = await CardStorage.findPositionByNo(dropNo);
+    if (position) {
+      let isUpdate = await CardStorage.addOneToAllPositionBiggerThan(
+        listNo,
+        position
+      );
+      if (!isUpdate) return res.status(404).json(response);
+
+      isUpdate = await CardStorage.updatePositionOf(dragNo, listNo, position);
+      if (isUpdate) return res.status(204).end();
+      return res.status(404).json(response);
+    } else return res.status(404).json(response);
+  },
+
   delete: async (req, res) => {
     const no = req.params.no;
     const isDelete = await CardStorage.delete(no);
