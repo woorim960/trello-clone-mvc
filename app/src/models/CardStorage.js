@@ -3,22 +3,35 @@
 const db = require("../config/db");
 
 class CardStorage {
-  static async findAll() {
-    const sql = `SELECT no, list_no AS listNo, content FROM cards;`;
+  static async findRecentPosition() {
+    const sql = `SELECT position FROM cards ORDER BY position DESC LIMIT 1;`;
 
     try {
-      const [cards, fields] = await db.promise().query(sql);
+      const [cards] = await db.promise().query(sql);
+      return cards[0]?.position;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static async findAll() {
+    const sql = `SELECT no, list_no AS listNo, content, position FROM cards ORDER BY position ASC;`;
+
+    try {
+      const [cards] = await db.promise().query(sql);
       return cards;
     } catch (err) {
       throw err;
     }
   }
 
-  static async save(listNo, content) {
-    const sql = `INSERT INTO cards (list_no, content) VALUES (?, ?);`;
+  static async save(listNo, content, position) {
+    const sql = `INSERT INTO cards (list_no, content, position) VALUES (?, ?, ?);`;
 
     try {
-      const [result] = await db.promise().query(sql, [listNo, content]);
+      const [result] = await db
+        .promise()
+        .query(sql, [listNo, content, position]);
       return result.insertId;
     } catch (err) {
       throw err;
